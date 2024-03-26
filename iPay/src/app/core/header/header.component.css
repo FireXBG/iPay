@@ -1,0 +1,33 @@
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 1vw 3vw;
+}
+
+.logo {
+    font-size: 2vw;
+    font-weight: 100;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+nav a {
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: 100;
+    padding: 0.5rem;
+    border-bottom: solid 0.05rem transparent;
+    transition: 300ms ease-in-out;
+    color: black;
+}
+
+nav a:hover {
+    border-bottom: solid 0.1rem #6097D0;
+    color: #6097D0;
+    scale: 1.05;
+}

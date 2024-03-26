@@ -1,0 +1,39 @@
+section {
+    margin: 5vw 3vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.info-section {
+    display: flex;
+    flex-direction: column;
+    gap: 2vw;
+}
+
+.info-section h1 {
+    font-size: 5vw;
+    margin-top: 3rem;
+}
+
+.info-section h1 span {
+    color: #6097D0;
+}
+
+.info-section p {
+    max-width: 55%;
+    color: rgb(74, 74, 74);
+    font-size: 1.5vw;
+    margin-left: 0.5rem;
+}
+
+.info-section a {
+    margin-left: 0.5rem;
+    padding: 0.5vw 1vw;
+    border-radius: 40px;
+}
+
+.vector-section {
+    width: 100vw;
+    margin-right: 5vw;
+}
