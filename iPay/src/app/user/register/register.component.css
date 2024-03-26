@@ -1,0 +1,55 @@
+section {
+    margin: 3vw;
+}
+
+.heading {
+margin-bottom: 5vw;
+}
+
+.heading > h1 {
+    font-size: 2.5vw;
+    margin-bottom: 0.5vw;
+    text-align: center;
+}
+
+.heading > h1 > span {
+    color: #6097D0;
+
+}
+
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1vw;
+}
+
+form > div {
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    gap: 1vw;
+}
+form > div > label {
+    font-size: 1.5vw;
+    font-weight: 100;
+}
+
+form > div > input {
+    height: 2vw;
+    width: 40vw;
+    font-size: 1.5vw;
+    border: none;
+    border-bottom: solid 0.1rem black;
+    padding-bottom: 0.1vw;
+    transition: 300ms ease-in-out;
+}
+
+form > div > input:focus {
+    outline: none;
+    padding-left: 0.5vw;
+    border-bottom: solid 0.1rem #6097D0;
+    font-size: 1.6vw;
+    color: #6097D0;
+}

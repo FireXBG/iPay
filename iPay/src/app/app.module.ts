@@ -7,6 +7,7 @@ import { CoreModule } from './core/core.module';
 import { HomeComponent } from './home/home.component';
 import { RouterModule } from '@angular/router';
 import { UserModule } from './user/user.module';
+import { UserRoutingModule } from './user/user-routing.module';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { UserModule } from './user/user.module';
     AppRoutingModule,
     CoreModule,
     RouterModule,
+    UserRoutingModule,
     UserModule
   ],
   providers: [],

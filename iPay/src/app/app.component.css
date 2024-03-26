@@ -21,3 +21,21 @@
     border: solid 0.2vw #6097D0;
     color: #6097D0;
 }
+
+::ng-deep .submitButton1 {
+    background-color: black;
+    color: white;
+    padding: 0.5vw 1vw;
+    border-radius: 40px;
+    font-size: 1vw;
+    transition: 300ms ease-in-out;
+    border: none;
+    min-width: 20vw;
+    min-height: 3vw;
+    margin-top: 1vw;
+}
+
+::ng-deep .submitButton1:hover {
+    background-color: #6097D0;
+    color: white;
+}
