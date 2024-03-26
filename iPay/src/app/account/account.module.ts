@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
+import { BalanceComponent } from './balance/balance.component';
 import { RouterModule } from '@angular/router';
 import { CoreModule } from '../core/core.module';
+import { AccountLayoutComponent } from './account-layout/account-layout.component';
 
 
 
 @NgModule({
   declarations: [
-    LoginComponent,
-    RegisterComponent
+    BalanceComponent,
+    AccountLayoutComponent
   ],
   imports: [
     CommonModule,
@@ -18,4 +18,4 @@ import { CoreModule } from '../core/core.module';
     CoreModule
   ]
 })
-export class UserModule { }
+export class AccountModule { }

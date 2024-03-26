@@ -8,6 +8,8 @@ import { HomeComponent } from './home/home.component';
 import { RouterModule } from '@angular/router';
 import { UserModule } from './user/user.module';
 import { UserRoutingModule } from './user/user-routing.module';
+import { AccountModule } from './account/account.module';
+import { AccountRoutingModule } from './account/account-routing.module';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { UserRoutingModule } from './user/user-routing.module';
     CoreModule,
     RouterModule,
     UserRoutingModule,
-    UserModule
+    UserModule,
+    AccountModule,
+    AccountRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
