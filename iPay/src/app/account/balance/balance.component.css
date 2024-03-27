@@ -1,0 +1,46 @@
+section {
+    width: 88vw;
+}
+
+.heading {
+    margin-top: 2vw;
+    margin-left: 4vw;
+    font-size: 3vw;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    place-items: center;
+    margin-top: 5vw;
+}
+
+.row {
+    background-color: #6097D0;
+    padding: 1vw 2vw;
+    width: 22vw;
+}
+
+.row > div {
+    display: flex;
+    flex-direction: column;
+    gap: 1vw;
+}
+
+.row > div > h1 {
+    font-size: 2vw;
+    color: white;
+}
+
+.row > div > p {
+    font-size: 1.3vw;
+    color: white;
+}
+
+.row > div > button {
+    background-color: #F2F2F2;
+    border: none;
+    padding: 0.5vw;
+    font-size: 1vw;
+    cursor: pointer;
+}
