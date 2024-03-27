@@ -1,1 +1,36 @@
-<p>send works!</p>
+<h1 class="heading">iPay Send Money</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <form>
+        <div class="form-group">
+          <label for="recipient">Recipient Email</label>
+          <input
+            type="text"
+            class="form-control"
+            id="recipient"
+            formControlName="recipient"
+          />
+        </div>
+        <div class="form-group">
+          <label for="amount">Amount</label>
+          <input
+            type="number"
+            class="form-control"
+            id="amount"
+            formControlName="amount"
+          />
+        </div>
+        <div class="form-group">
+          <label for="currency">Currency</label>
+          <select class="form-control" id="currency" formControlName="currency">
+            <option value="USD">BGN</option>
+            <option value="EUR">EUR</option>
+            <option value="USD">USD</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Send</button>
+      </form>
+    </div>
+  </div>
+</div>
