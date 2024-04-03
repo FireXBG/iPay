@@ -4,6 +4,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { RouterModule } from '@angular/router';
 import { CoreModule } from '../core/core.module';
+import {FormsModule} from "@angular/forms";
 
 
 
@@ -15,7 +16,8 @@ import { CoreModule } from '../core/core.module';
   imports: [
     CommonModule,
     RouterModule,
-    CoreModule
+    CoreModule,
+    FormsModule
   ]
 })
 export class UserModule { }
