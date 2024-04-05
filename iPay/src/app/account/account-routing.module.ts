@@ -6,18 +6,20 @@ import { AddMoneyComponent } from "./add-money/add-money.component";
 import { TransactionsComponent } from "./transactions/transactions.component";
 import { SendComponent } from "./send/send.component";
 import { SettingsComponent } from "./settings/settings.component";
+import {AuthGuard} from "../user/guards/auth.guard";
 
 const routes: Routes = [
-  { 
-    path: 'account', 
-    component: AccountLayoutComponent, 
+  {
+    path: 'account',
+    component: AccountLayoutComponent,
+    canActivate: [AuthGuard],
     children: [
-      { path: 'balance', component: BalanceComponent },
-      { path: 'add', component: AddMoneyComponent },
-      { path: 'send', component: SendComponent },
-      { path: 'transactions', component: TransactionsComponent },
-      { path: 'settings', component: SettingsComponent },
-    ] 
+      { path: 'balance', component: BalanceComponent, canActivate: [AuthGuard] },
+      { path: 'add', component: AddMoneyComponent, canActivate: [AuthGuard] },
+      { path: 'send', component: SendComponent, canActivate: [AuthGuard] },
+      { path: 'transactions', component: TransactionsComponent, canActivate: [AuthGuard] },
+      { path: 'settings', component: SettingsComponent, canActivate: [AuthGuard] },
+    ]
   },
 ];
 

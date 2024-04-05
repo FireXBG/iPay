@@ -10,6 +10,8 @@ import { UserModule } from './user/user.module';
 import { UserRoutingModule } from './user/user-routing.module';
 import { AccountModule } from './account/account.module';
 import { AccountRoutingModule } from './account/account-routing.module';
+import {JwtInterceptor} from "./intenrceptors/jwt.interceptor";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -24,9 +26,12 @@ import { AccountRoutingModule } from './account/account-routing.module';
     UserRoutingModule,
     UserModule,
     AccountModule,
-    AccountRoutingModule
+    AccountRoutingModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
