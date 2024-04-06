@@ -2,19 +2,20 @@
 <div class="container">
   <div class="row">
     <div class="col-md-6">
-      <form>
+      <form (ngSubmit)="addMoney()">
         <div class="form-group">
           <label for="amount">Amount</label>
           <input
             type="number"
             class="form-control"
             id="amount"
-            formControlName="amount"
+            name="amount"
+            [(ngModel)]="amount"
           />
         </div>
         <div class="form-group">
           <label for="currency">Currency</label>
-          <select class="form-control" id="currency" formControlName="currency">
+          <select class="form-control" id="currency" name="currency" [(ngModel)]="currency">
             <option value="BGN">BGN</option>
             <option value="USD">USD</option>
             <option value="EUR">EUR</option>

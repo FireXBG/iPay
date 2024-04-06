@@ -4,6 +4,7 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { RouterModule } from '@angular/router';
 import { AccountMenuComponent } from './account-menu/account-menu.component';
+import {UserService} from "../user/user.service";
 
 
 
@@ -15,12 +16,13 @@ import { AccountMenuComponent } from './account-menu/account-menu.component';
   ],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
   ],
   exports: [
     HeaderComponent,
     FooterComponent,
     AccountMenuComponent
-  ]
+  ],
+  providers: [UserService]
 })
 export class CoreModule { }

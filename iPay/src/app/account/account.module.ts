@@ -8,6 +8,8 @@ import { AddMoneyComponent } from './add-money/add-money.component';
 import { SendComponent } from './send/send.component';
 import { TransactionsComponent } from './transactions/transactions.component';
 import { SettingsComponent } from './settings/settings.component';
+import {UserService} from "../user/user.service";
+import {FormsModule} from "@angular/forms";
 
 
 
@@ -23,7 +25,14 @@ import { SettingsComponent } from './settings/settings.component';
   imports: [
     CommonModule,
     RouterModule,
-    CoreModule
+    CoreModule,
+    FormsModule
   ]
 })
-export class AccountModule { }
+export class AccountModule {
+  constructor(private userService: UserService) {}
+
+  logout(): void {
+    this.userService.logout();
+  }
+}

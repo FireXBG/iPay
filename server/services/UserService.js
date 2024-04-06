@@ -38,3 +38,12 @@ exports.login = async (data) => {
 exports.validate = async (token) => {
     return jwt.verify(token, process.env.JWT_SECRET);
 }
+
+exports.getUserId = async (email) => {
+    const user = await User.findOne({ email: email });
+    return user._id;
+}
+
+exports.logout = async (token) => {
+    return this.validate(token);
+}

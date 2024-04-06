@@ -2,7 +2,7 @@
   <div class="heading">
     <h1>Welcome to <span>iPay</span></h1>
   </div>
-  <form (submit)="login()">
+  <form (ngSubmit)="login()">
     <div>
       <label>Email</label>
       <input type="email" [(ngModel)]="email" name="email" />

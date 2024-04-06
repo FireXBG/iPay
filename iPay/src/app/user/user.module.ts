@@ -21,8 +21,5 @@ import {JwtInterceptor} from "../intenrceptors/jwt.interceptor";
     CoreModule,
     FormsModule
   ],
-  providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true}
-  ]
 })
 export class UserModule { }
