@@ -10,6 +10,7 @@ import { TransactionsComponent } from './transactions/transactions.component';
 import { SettingsComponent } from './settings/settings.component';
 import {UserService} from "../user/user.service";
 import {FormsModule} from "@angular/forms";
+import { FriendsComponent } from './friends/friends.component';
 
 
 
@@ -20,7 +21,8 @@ import {FormsModule} from "@angular/forms";
     AddMoneyComponent,
     SendComponent,
     TransactionsComponent,
-    SettingsComponent
+    SettingsComponent,
+    FriendsComponent
   ],
   imports: [
     CommonModule,
