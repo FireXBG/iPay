@@ -7,6 +7,7 @@ import { TransactionsComponent } from "./transactions/transactions.component";
 import { SendComponent } from "./send/send.component";
 import { SettingsComponent } from "./settings/settings.component";
 import {AuthGuard} from "../user/guards/auth.guard";
+import {FriendsComponent} from "./friends/friends.component";
 
 const routes: Routes = [
   {
@@ -17,6 +18,7 @@ const routes: Routes = [
       { path: 'balance', component: BalanceComponent, canActivate: [AuthGuard] },
       { path: 'add', component: AddMoneyComponent, canActivate: [AuthGuard] },
       { path: 'send', component: SendComponent, canActivate: [AuthGuard] },
+      { path: 'friends', component: FriendsComponent, canActivate: [AuthGuard] },
       { path: 'transactions', component: TransactionsComponent, canActivate: [AuthGuard] },
       { path: 'settings', component: SettingsComponent, canActivate: [AuthGuard] },
     ]

@@ -1,53 +1,62 @@
 .heading {
-    margin-top: 2vw;
-    font-size: 3vw;
-    text-align: center;
+  margin-top: 2vw;
+  font-size: 3vw;
+  text-align: center;
 }
 
 .container {
-    width: 88vw;
-    display: grid;
-    place-items: center;
-    margin-top: 5vw;
+  width: 88vw;
+  display: grid;
+  place-items: center;
+  margin-top: 5vw;
 }
 
 .row {
-    background-color: #6097D0;
-    padding: 1vw 2vw;
-    width: 22vw;
+  background-color: #6097D0;
+  padding: 1vw 2vw;
+  width: 22vw;
 }
 
 form {
-    display: flex;
-    flex-direction: column;
-    gap: 1vw;
+  display: flex;
+  flex-direction: column;
+  gap: 1vw;
 }
 
 .form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5vw;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5vw;
 }
 
 .form-group > label {
-    font-size: 1.5vw;
-    color: white;
+  font-size: 1vw;
+  color: white;
 }
 
 .form-group > input {
-    padding: 0.5vw;
-    font-size: 1.5vw;
+  padding: 0.5vw;
+  font-size: 1vw;
+  border-radius: 100px;
+  border: none;
 }
 
 .form-group > select {
-    padding: 0.5vw;
-    font-size: 1.5vw;
+  padding: 0.5vw;
+  font-size: 1vw;
+  border-radius: 100px;
+  border: none;
 }
 
-form > button {
-    background-color: #F2F2F2;
-    border: none;
-    padding: 0.5vw;
-    font-size: 1.5vw;
-    cursor: pointer;
+.form-group > select:focus,
+.form-group > input:focus {
+  outline: none;
+}
+
+button {
+  background-color: white;
+  border: none;
+  padding: 0.5vw 1vw;
+  cursor: pointer;
+  border-radius: 100px;
 }
