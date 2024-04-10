@@ -8,7 +8,7 @@ const UserSchema = new mongoose.Schema({
         unique: true
     },
     id: {
-type: Number,
+        type: Number,
         required: [true, 'Please provide an id'],
         unique: true
     },
@@ -20,10 +20,10 @@ type: Number,
     password: {
         type: String,
         required: [true, 'Please provide a password']
-    }
+    },
 })
 
-UserSchema.pre('save', async function() {
+UserSchema.pre('save', async function () {
     const hash = await bcrypt.hash(this.password, 12);
     this.password = hash;
 })

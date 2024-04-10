@@ -7,7 +7,9 @@ import {HttpClient} from "@angular/common/http";
 
 export class AccountService {
   apiUrl = "http://localhost:3001/assets";
-  constructor(private http: HttpClient) {}
+
+  constructor(private http: HttpClient) {
+  }
 
   getBalance() {
     const token = localStorage.getItem('token');
@@ -16,9 +18,20 @@ export class AccountService {
 
   addBalance(data: any) {
     const token = localStorage.getItem('token');
-    data = { ...data, token };
+    data = {...data, token};
     this.http.post(`${this.apiUrl}/addAsset`, data).subscribe((res: any) => {
       return res;
     })
+  }
+
+  sendBalance(data: any) {
+    const token = localStorage.getItem('token');
+    data = {...data, token};
+    return this.http.post(`${this.apiUrl}/sendAsset`, data);
+  }
+
+  getTransactions() {
+    const token = localStorage.getItem('token');
+    return this.http.get(`${this.apiUrl}/getHistory?token=${token}`);
   }
 }
