@@ -34,13 +34,7 @@ export class RegisterComponent {
       return;
     }
 
-    const user = {
-      name: this.name,
-      id: this.id,
-      email: this.email,
-      password: this.password,
-      rePassword: this.rePassword
-    };
+    const user = this.registerForm.value;
 
     this.userService.register(user).pipe(
       catchError((error: any) => {

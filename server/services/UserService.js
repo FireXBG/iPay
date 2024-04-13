@@ -59,6 +59,10 @@ exports.getUserId = async (email) => {
 
 }
 
+exports.changePassword = async (data) => {
+    console.log(user)
+}
+
 exports.logout = async (token) => {
     return this.validate(token);
 }

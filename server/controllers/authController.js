@@ -42,6 +42,15 @@ router.post("/validate", (req, res) => {
     })
 })
 
+router.post("changePassword", (req, res) => {
+    const {newPass, token} = req.body;
+    const user = this.validate(token);
+    UserService.changePassword(user, newPass).then(() => {
+        console.log('Password changed');
+        res.status(200).json({success: true});
+    })
+})
+
 router.post("/logout", (req, res) => {
     const token = req.body.token;
     UserService.logout(token).then((isValid) => {

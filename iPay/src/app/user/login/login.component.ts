@@ -5,13 +5,11 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-login',
-  templateUrl: './login.component.html', // Include the HTML template here
+  templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
   loginForm: FormGroup;
-  email: string = '';
-  password: string = '';
 
   constructor(private userService: UserService, private router: Router, private fb: FormBuilder) {
     this.loginForm = this.fb.group({
@@ -21,7 +19,11 @@ export class LoginComponent {
   }
 
   login() {
-    const user = {email: this.email, password: this.password};
+    if (this.loginForm.invalid) {
+      return;
+    }
+
+    const user = this.loginForm.value;
 
     this.userService.login(user).subscribe((res: any) => {
       if (res.success) {
@@ -30,8 +32,8 @@ export class LoginComponent {
       } else {
         throw new Error('Invalid credentials');
       }
-    }), (error: any) => {
+    }, (error: any) => {
       console.error(error);
-    }
+    });
   }
 }
