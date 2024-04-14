@@ -1,7 +1,6 @@
 import {Component} from '@angular/core';
 import {UserService} from '../user.service';
 import {Router} from "@angular/router";
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -9,31 +8,31 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  loginForm: FormGroup;
+  user = {email: '', password: ''};
+  message: string = '';
 
-  constructor(private userService: UserService, private router: Router, private fb: FormBuilder) {
-    this.loginForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]]
-    });
+  constructor(private userService: UserService, private router: Router) {
   }
 
   login() {
-    if (this.loginForm.invalid) {
+    console.log('Login form submitted')
+
+    if (!this.user.email || !this.user.password) {
+      this.message = 'Email and password are required.';
       return;
     }
 
-    const user = this.loginForm.value;
-
-    this.userService.login(user).subscribe((res: any) => {
+    this.userService.login(this.user).subscribe((res: any) => {
       if (res.success) {
         localStorage.setItem('token', res.jwt);
         this.router.navigate(['/account']);
       } else {
-        throw new Error('Invalid credentials');
+        this.message = res.message;
+        console.log(res.message)
       }
     }, (error: any) => {
-      console.error(error);
+      this.message = error.error.message;
+      console.log(error)
     });
   }
 }

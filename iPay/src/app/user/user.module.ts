@@ -19,7 +19,6 @@ import {JwtInterceptor} from "../intenrceptors/jwt.interceptor";
     RouterModule,
     CoreModule,
     FormsModule,
-    ReactiveFormsModule
   ],
 })
 export class UserModule {

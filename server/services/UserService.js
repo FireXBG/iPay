@@ -5,11 +5,6 @@ const bcrypt = require('bcryptjs');
 const dotenv = require('dotenv').config();
 
 exports.register = async (data) => {
-    const isAlreadyRegistered = await User.findOne({email: data.email});
-    if (isAlreadyRegistered) {
-        throw new Error('Email is already registered');
-    }
-
     const assetsData = {
         BGN: 0,
         EUR: 0,
@@ -24,14 +19,16 @@ exports.register = async (data) => {
     })
 }
 
-exports.login = async (data) => {
-    console.log(data)
+exports.login = async (login, password) => {
+    const data = {
+        email: login,
+        password: password
+    }
+
     const user = await User.findOne({email: data.email});
     if (!user) {
         throw new Error('User not found');
     }
-
-    console.log(user)
 
     const isPasswordCorrect = await bcrypt.compare(data.password, user.password);
     if (!isPasswordCorrect) {
@@ -61,6 +58,7 @@ exports.getUserId = async (email) => {
 
 exports.changePassword = async (data) => {
     console.log(user)
+    return true;
 }
 
 exports.logout = async (token) => {

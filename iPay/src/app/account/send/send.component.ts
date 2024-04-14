@@ -10,15 +10,34 @@ export class SendComponent {
   email: string = '';
   amount: number = 0;
   currency: string = '';
+  message: string = '';
 
   constructor(private accountService: AccountService) {
   }
 
   sendBalance() {
     const data = {email: this.email, amount: this.amount, currency: this.currency};
-    console.log(this.currency)
-    this.accountService.sendBalance(data).subscribe((response: any) => {
-      console.log(response);
+
+    if (!this.email || !this.amount || !this.currency) {
+      this.message = 'Please fill all the fields.';
+      setTimeout(() => {
+        this.message = '';
+      }, 3000);
+      return;
+    }
+
+    this.accountService.sendBalance(data).subscribe((res: any) => {
+      if (res.message) {
+        this.message = res.message;
+        setTimeout(() => {
+          this.message = res.message;
+        }, 3000)
+      } else {
+        this.message = res.error;
+        setTimeout(() => {
+          this.message = 'Something went wrong! Please try again.'
+        }, 3000)
+      }
     });
   }
 }

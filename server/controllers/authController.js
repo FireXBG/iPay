@@ -14,14 +14,14 @@ router.post("/register", (req, res) => {
 })
 
 router.post("/login", (req, res) => {
-    const user = req.body;
+    const {email, password} = req.body;
 
-    UserService.login(user).then((token) => {
+    UserService.login(email, password).then((token) => {
         console.log('User logged in');
-        res.status(200).json({success: true, jwt: token});
+        res.status(200).json({success: true, jwt: token, message: 'User logged in'});
     }).catch((error) => {
         console.log(error.message);
-        res.status(403).json({error: error.message});
+        res.status(403).json({error: 'Invalid email or password', message: 'Invalid credentials'});
     })
 })
 
@@ -42,12 +42,15 @@ router.post("/validate", (req, res) => {
     })
 })
 
-router.post("changePassword", (req, res) => {
+router.post("/changePassword", (req, res) => {
     const {newPass, token} = req.body;
-    const user = this.validate(token);
+    const user = UserService.validate(token);
     UserService.changePassword(user, newPass).then(() => {
         console.log('Password changed');
-        res.status(200).json({success: true});
+        res.status(200).json({message: 'Password changed successfully'});
+    }).catch((err) => {
+        console.log(err.message);
+        res.status(400).json({error: err.message});
     })
 })
 

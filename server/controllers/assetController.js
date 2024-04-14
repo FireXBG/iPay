@@ -37,8 +37,8 @@ router.post('/addAsset', (req, res) => {
             const email = user.email;
             const id = await UserService.getUserId(email)
             const userId = id.toString();
-            AssetService.addAsset(currency, amount, userId).then((asset) => {
-                res.json(asset);
+            AssetService.addAsset(currency, amount, userId).then(() => {
+                res.json({message: 'Asset added successfully'});
             }).catch((err) => {
                 res.status(500).json(err);
             })
@@ -48,15 +48,19 @@ router.post('/addAsset', (req, res) => {
 
 router.post('/sendAsset', (req, res) => {
     const {email, amount, currency, token} = req.body;
+    if (!email || !amount || !currency || !token) {
+        return res.status(400).json({message: 'Missing required fields'});
+    }
     UserService.validate(token).then(async (user) => {
         if (user) {
             const senderEmail = user.email;
             const senderId = await UserService.getUserId(senderEmail);
             const receiverId = await UserService.getUserId(email);
-            AssetService.sendAsset(currency, amount, senderId, receiverId).then((asset) => {
-                res.json(asset);
+            AssetService.sendAsset(currency, amount, senderId, receiverId).then(() => {
+                return res.json({message: 'Asset sent successfully'});
             }).catch((err) => {
-                res.status(500).json(err);
+                console.log(err)
+                return res.status(500).json({message: err.message});
             })
         }
     })

@@ -19,9 +19,7 @@ export class AccountService {
   addBalance(data: any) {
     const token = localStorage.getItem('token');
     data = {...data, token};
-    this.http.post(`${this.apiUrl}/addAsset`, data).subscribe((res: any) => {
-      return res;
-    })
+    return this.http.post(`${this.apiUrl}/addAsset`, data);
   }
 
   sendBalance(data: any) {

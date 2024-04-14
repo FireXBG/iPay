@@ -1,6 +1,6 @@
-import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
-import { Observable } from "rxjs";
+import {Injectable} from "@angular/core";
+import {HttpClient} from "@angular/common/http";
+import {Observable} from "rxjs";
 import {catchError} from "rxjs/operators";
 import {Router} from "@angular/router";
 
@@ -10,7 +10,8 @@ import {Router} from "@angular/router";
 export class UserService {
   apiUrl = "http://localhost:3001/auth";
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router) {
+  }
 
   login(user: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/login`, user);
@@ -22,7 +23,7 @@ export class UserService {
 
   logout() {
     const token = localStorage.getItem("token");
-    this.http.post(`${this.apiUrl}/logout`, { token }).subscribe((res) => {
+    this.http.post(`${this.apiUrl}/logout`, {token}).subscribe((res) => {
       localStorage.removeItem("token");
       this.router.navigate(["/"]);
     }, catchError((error) => {
@@ -31,5 +32,10 @@ export class UserService {
       this.router.navigate(['/']);
       return error;
     }))
+  }
+
+  changePassword(data: any) {
+    const token = localStorage.getItem("token");
+    return this.http.post(`${this.apiUrl}/changePassword`, {data, token});
   }
 }

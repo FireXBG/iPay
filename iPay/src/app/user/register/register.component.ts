@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {UserService} from '../user.service';
 import {Router} from "@angular/router";
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {NgForm} from '@angular/forms';
 import {throwError} from 'rxjs';
 import {catchError} from 'rxjs/operators';
 
@@ -16,25 +16,25 @@ export class RegisterComponent {
   email: string = '';
   password: string = '';
   rePassword: string = '';
-  registerForm: FormGroup;
+  message: string = '';
 
-  constructor(private userService: UserService, private router: Router, private fb: FormBuilder) {
-    this.registerForm = this.fb.group({
-      name: ['', Validators.required],
-      id: ['', [Validators.required, this.idLengthValidator]],
-      email: ['', [Validators.required, this.emailValidator]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-      rePassword: ['', Validators.required]
-    });
+  constructor(private userService: UserService, private router: Router) {
   }
 
-  register() {
-    if (this.registerForm.value.password !== this.registerForm.value.rePassword) {
-      this.registerForm.get('rePassword')?.setErrors({notSame: true});
+  register(form: NgForm) {
+    if (!this.name || !this.id || !this.email || !this.password || !this.rePassword) {
+      this.message = 'Please fill all the fields.';
+      setTimeout(() => {
+        this.message = '';
+      }, 3000);
       return;
     }
 
-    const user = this.registerForm.value;
+    if (form.invalid) {
+      return;
+    }
+
+    const user = {name: this.name, id: this.id, email: this.email, password: this.password};
 
     this.userService.register(user).pipe(
       catchError((error: any) => {
@@ -48,21 +48,5 @@ export class RegisterComponent {
         throw new Error('Invalid credentials');
       }
     });
-  }
-
-  // Custom Validators
-  idLengthValidator(control: any) {
-    if (control.value && (control.value.length !== 10)) {
-      return {idLength: true};
-    }
-    return null;
-  }
-
-  emailValidator(control: any) {
-    const emailRegex = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z]{2,}/;
-    if (control.value && !emailRegex.test(control.value)) {
-      return {invalidEmail: true};
-    }
-    return null;
   }
 }
