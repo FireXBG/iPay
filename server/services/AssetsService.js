@@ -25,6 +25,10 @@ exports.sendAsset = async (currency, amount, senderId, receiverId) => {
     let senderAssets = await Assets.findOne({user: senderId});
     let receiverAssets = await Assets.findOne({user: receiverId});
 
+    if (!senderAssets || !receiverAssets) {
+        throw new Error('Invalid sender or receiver');
+    }
+
     if (senderAssets[currency] < amount) {
         return new Error('Insufficient funds');
     }

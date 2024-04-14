@@ -53,15 +53,20 @@ router.post('/sendAsset', (req, res) => {
     }
     UserService.validate(token).then(async (user) => {
         if (user) {
-            const senderEmail = user.email;
-            const senderId = await UserService.getUserId(senderEmail);
-            const receiverId = await UserService.getUserId(email);
-            AssetService.sendAsset(currency, amount, senderId, receiverId).then(() => {
-                return res.json({message: 'Asset sent successfully'});
-            }).catch((err) => {
+            try {
+                const senderEmail = user.email;
+                const senderId = await UserService.getUserId(senderEmail);
+                const receiverId = await UserService.getUserId(email);
+                AssetService.sendAsset(currency, amount, senderId, receiverId).then(() => {
+                    return res.json({message: 'Asset sent successfully'});
+                }).catch((err) => {
+                    console.log(err)
+                    return res.status(500).json({message: err.message});
+                })
+            } catch (err) {
                 console.log(err)
                 return res.status(500).json({message: err.message});
-            })
+            }
         }
     })
 })

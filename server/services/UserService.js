@@ -50,15 +50,30 @@ exports.validate = async (token) => {
 
 exports.getUserId = async (email) => {
     const user = await User.findOne({email: email});
-    if (user) {
-        return user._id;
+    if (!user) {
+        throw new Error('User does not exist');
     }
-
+    return user._id.toString();
 }
 
 exports.changePassword = async (data) => {
-    console.log(user)
-    return true;
+    const user = await User.findOne({email: data.email});
+    if (!user) {
+        throw new Error('User does not exist');
+    }
+
+    const isPasswordCorrect = await bcrypt.compare(data.currentPassword, user.password);
+    if (!isPasswordCorrect) {
+        throw new Error('Current password is incorrect');
+    }
+
+    console.log(data.newPassword);
+    const hash = await bcrypt.hash(data.newPassword, 12);
+    User.updateOne({email: data.email}, {password: hash}).then((err) => {
+        console.log(err);
+    });
+
+    return 'Password changed successfully';
 }
 
 exports.logout = async (token) => {

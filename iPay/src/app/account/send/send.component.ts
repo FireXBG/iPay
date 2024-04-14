@@ -26,18 +26,19 @@ export class SendComponent {
       return;
     }
 
-    this.accountService.sendBalance(data).subscribe((res: any) => {
-      if (res.message) {
+    this.accountService.sendBalance(data).subscribe(
+      (res: any) => {
         this.message = res.message;
         setTimeout(() => {
-          this.message = res.message;
-        }, 3000)
-      } else {
-        this.message = res.error;
+          this.message = '';
+        }, 3000);
+      },
+      (error: any) => {
+        this.message = error.error.message;
         setTimeout(() => {
-          this.message = 'Something went wrong! Please try again.'
-        }, 3000)
+          this.message = '';
+        }, 3000);
       }
-    });
+    );
   }
 }

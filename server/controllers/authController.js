@@ -43,15 +43,22 @@ router.post("/validate", (req, res) => {
 })
 
 router.post("/changePassword", (req, res) => {
-    const {newPass, token} = req.body;
-    const user = UserService.validate(token);
-    UserService.changePassword(user, newPass).then(() => {
-        console.log('Password changed');
-        res.status(200).json({message: 'Password changed successfully'});
+    const {data, token} = req.body;
+    const currentPassword = data.currentPassword;
+    const password = data.password;
+    const newPassword = data.newPassword;
+    UserService.validate(token).then((user) => {
+        UserService.changePassword({currentPassword, password, newPassword, email: user.email}).then((message) => {
+            console.log('Password changed');
+            res.status(200).json({message: message});
+        }).catch((err) => {
+            console.log(err.message);
+            res.status(400).json({error: err.message});
+        })
     }).catch((err) => {
         console.log(err.message);
-        res.status(400).json({error: err.message});
-    })
+        res.status(403).json({error: err.message, success: false});
+    });
 })
 
 router.post("/logout", (req, res) => {

@@ -56,3 +56,14 @@ button {
   margin-top: 1vw;
 }
 
+.alert-info {
+  margin-top: 1vw;
+  padding: 1vw;
+  background-color: #d9edf7;
+  border-color: #bce8f1;
+  color: #31708f;
+  border-radius: 4px;
+  text-align: center;
+  font-size: 1vw;
+}
+
